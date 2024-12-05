@@ -34,7 +34,6 @@ const RegisterForm = ({user}: {user: User}) => {
       name: "",
       email:"",
       phone:"",
-      gender: "male", 
     },
   })
  
@@ -55,7 +54,7 @@ const RegisterForm = ({user}: {user: User}) => {
     try {
       const patientData ={
         ...values,
-        userID: user.$id,
+        userid: user.$id,
         birthDate: new Date(values.birthDate),
         identificationDocument: formData,
       }
