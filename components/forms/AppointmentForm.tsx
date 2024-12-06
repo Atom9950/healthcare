@@ -21,9 +21,9 @@ import { createAppointment } from "@/lib/actions/appointment.actions"
 
  
 const AppointmentForm = ({
-  userId, patientId, type,
+  userID, patientId, type,
 }:{
-  userId: string,
+  userID: string,
   patientId: string,
   type:"create" | "cancel" | "schedule",
 }) => {
@@ -65,7 +65,7 @@ const AppointmentForm = ({
     try {
       if(type==='create' && patientId){
         const appointmentData={
-          userId,
+          userID,
           patient: patientId,
           primaryPhysician: values.primaryPhysician,
           schedule: new Date(values.schedule),
@@ -77,9 +77,10 @@ const AppointmentForm = ({
 
         if(appointment){
           form.reset();
-          router.push(`/patients/${userId}/new-appointment/success?appointmentId= ${appointment.id}`)
+          router.push(`/patients/${userID}/new-appointment/success?appointmentId=${appointment.id}`)
         }
       }
+      
 
     } catch (error) {
       console.log(error);

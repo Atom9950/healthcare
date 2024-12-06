@@ -39,7 +39,7 @@ declare type SearchParamProps = {
   }
   
   declare type CreateAppointmentParams = {
-    userId: string;
+    userID: string;
     patient: string;
     primaryPhysician: string;
     reason: string;

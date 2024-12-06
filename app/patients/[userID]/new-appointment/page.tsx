@@ -6,12 +6,12 @@ import AppointmentForm from "@/components/forms/AppointmentForm"
 import { getPatient } from "@/lib/actions/patient.actions"
 
 interface SearchParamProps {
-  params: Promise<{ userId: string }>
+  params: Promise<{ userID: string }>
 }
 
 const Appointment = async ({ params }: SearchParamProps) => {
-  const { userId } = await params
-  const patient = await getPatient(userId)
+  const { userID } = await params
+  const patient = await getPatient(userID)
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
@@ -26,7 +26,7 @@ const Appointment = async ({ params }: SearchParamProps) => {
 
           <AppointmentForm
             patientId={patient?.$id}
-            userId={userId}
+            userID={userID}
             type="create"
           />
 
