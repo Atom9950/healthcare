@@ -5,13 +5,9 @@ import Link from "next/link"
 import AppointmentForm from "@/components/forms/AppointmentForm"
 import { getPatient } from "@/lib/actions/patient.actions"
 
-interface SearchParamProps {
-  params: Promise<{ userID: string }>
-}
+const Appointment = async ({ params: { userId } }: SearchParamProps) => {
+  const patient = await getPatient(userId);
 
-const Appointment = async ({ params }: SearchParamProps) => {
-  const { userID } = await params
-  const patient = await getPatient(userID)
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container my-auto">
@@ -26,7 +22,7 @@ const Appointment = async ({ params }: SearchParamProps) => {
 
           <AppointmentForm
             patientId={patient?.$id}
-            userID={userID}
+            userId={userId}
             type="create"
           />
 
