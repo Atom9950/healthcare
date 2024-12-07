@@ -41,22 +41,25 @@ export const getUser = async (userID: string) =>{
     }
 }
 
-export const getPatient = async (userId: string) =>{
+export const getPatient = async (userID: string) => {
     try {
-        const patients =await databases.listDocuments(
+        const patients = await databases.listDocuments(
             DATABASE_ID!,
             PATIENT_COLLECTION_ID!,
-            [ Query.equal('userId',userId) ]
+            [ Query.equal('userid', userID) ] // Note: 'userid' exactly as in the schema
         );
 
-        return parseStringify(patients.documents[0]);
+        // If multiple documents exist, return the first one
+        if (patients.documents.length > 0) {
+            return parseStringify(patients.documents[0]);
+        }
         
+        return null;
     } catch (error) {
-        console.log(error)
-        
+        console.error('Error in getPatient:', error);
+        return null;
     }
 }
-
 export const registerPatient = async ({ identificationDocument, ...patient}:
     RegisterUserParams) => {
         try {
