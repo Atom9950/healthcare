@@ -54,3 +54,4 @@ declare type SearchParamProps = {
     appointment: Appointment;
     type: string;
   };
+  

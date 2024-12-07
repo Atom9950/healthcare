@@ -18,3 +18,28 @@ export const createAppointment = async (appointment: CreateAppointmentParams) =>
         console.log(error);
     }
 }
+
+export const getAppointment = async (appointmentId: string) => {
+    if (!DATABASE_ID || !APPOINTMENT_COLLECTION_ID) {
+        throw new Error("Database or Collection ID is not defined");
+    }
+
+    if (!appointmentId || appointmentId.trim() === '') {
+        throw new Error("Invalid appointment ID");
+    }
+
+    try {
+        const appointment = await databases.getDocument(
+            DATABASE_ID,
+            APPOINTMENT_COLLECTION_ID,
+            appointmentId.trim()
+        );
+
+        return parseStringify(appointment);
+    } catch (error) {
+        console.error("Error fetching appointment:", error);
+        throw new Error("Failed to fetch appointment");
+    }
+
+    
+}
