@@ -1,7 +1,7 @@
 'use server'
 import { ID, Query } from "node-appwrite";
 import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases } from "../appwrite.config";
-import { formatDateTime, parseStringify } from "../utils";
+import { parseStringify } from "../utils";
 import { Appointment } from "@/types/appwrite.types";
 import { revalidatePath } from "next/dist/server/web/spec-extension/revalidate";
 
@@ -92,10 +92,7 @@ export const getRecentAppointmentList = async () => {
 
 export const updateAppointment = async ({
     appointmentId,
-    userId,
-    timeZone,
     appointment,
-    type,
   }: UpdateAppointmentParams) => {
     try {
       const updatedAppointment = await databases.updateDocument(

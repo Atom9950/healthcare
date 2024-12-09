@@ -2,7 +2,6 @@
 
 import {
 FormControl,
-FormDescription,
 FormField,
 FormItem,
 FormLabel,
@@ -13,7 +12,7 @@ import { Control } from "react-hook-form"
 import { FormFieldType } from "../forms/PatientForm"
 import Image from "next/image"
 import 'react-phone-number-input/style.css'
-import PhoneInput, { Value } from 'react-phone-number-input'
+import PhoneInput from 'react-phone-number-input'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "../ui/select";

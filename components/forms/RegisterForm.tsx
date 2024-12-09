@@ -3,15 +3,14 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Button } from "@/components/ui/button"
 import { Form, FormControl } from "@/components/ui/form"
 import CustomFormField from "../ui/CustomFormField"
 import SubmitButton from "../ui/SubmitButton"
 import { useState } from "react"
-import { PatientFormValidation, UserFormValidation } from "@/lib/validation"
+import { PatientFormValidation } from "@/lib/validation"
 import { useRouter } from "next/navigation"
-import { createUser, registerPatient } from "@/lib/actions/patient.actions"
-import PatientForm, { FormFieldType } from "./PatientForm"
+import { registerPatient } from "@/lib/actions/patient.actions"
+import { FormFieldType } from "./PatientForm"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Doctors, GenderOptions, IdentificationTypes, PatientFormDefaultValues } from "@/constants"
 import { Label } from "@radix-ui/react-label"
@@ -59,7 +58,7 @@ const RegisterForm = ({user}: {user: User}) => {
         identificationDocument: formData,
       }
 
-      // @ts-ignore
+      // @ts-expect-error
 
       const patient= await registerPatient(patientData);
 
