@@ -6,8 +6,10 @@ import Link from "next/link"
 import {PasskeyModal} from "@/components/PasskeyModal"
 import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import { Suspense } from 'react'
 
-const Home = () => {
+// Separate client component for search params logic
+const HomeContent = () => {
   const searchParams = useSearchParams();
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -51,4 +53,11 @@ const Home = () => {
   )
 }
 
-export default Home
+// Wrapper component with Suspense
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
+  )
+}
